@@ -26,7 +26,7 @@ export const Footer = () => {
                     <div className="col-md-4">
                         <div className="menus d-flex">
                             <ul className="list-unstyled">
-                                <li><Link exact to="/">Blog</Link></li>
+                                <li><Link to="/">Blog</Link></li>
                                 <li><Link to="/volunteers/create">Volunteers</Link></li>
                                 <li><Link to="/subscribers/create">Subscribers</Link></li>
                             </ul>

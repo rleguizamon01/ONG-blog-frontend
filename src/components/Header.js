@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink } from "react-router-dom";
+import {Link, NavLink } from "react-router-dom";
 
 export const Header = () => {
     return (
@@ -10,7 +10,7 @@ export const Header = () => {
                     {/* <!-- Navbar Brand --> */}
                     <div className="navbar-header d-flex align-items-center justify-content-between">
                         {/* <!-- Navbar Brand --> */}
-                        <a href="/" className="navbar-brand">ONG Team</a>
+                        <Link to="/" className="navbar-brand">ONG Team</Link>
                         {/* <!-- Toggle Button--> */}
                         <button type="button" data-toggle="collapse" data-target="#navbarcollapse"
                                 aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation"

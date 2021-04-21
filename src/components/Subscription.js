@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Subscription = () => {
+const Subscription = () => {
     return (
         <section className="newsletter no-padding-top m-3">
             <div className="container">
@@ -52,3 +52,4 @@ export const Subscription = () => {
         </section>
     )
 }
+export default Subscription

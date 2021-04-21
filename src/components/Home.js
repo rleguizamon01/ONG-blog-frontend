@@ -1,5 +1,6 @@
 import React from 'react'
-import { Subscription } from './Subscription'
+import Subscription from './Subscription'
+import { Link } from "react-router-dom";
 
 export const Home = () => {
     return (
@@ -10,7 +11,8 @@ export const Home = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-7">
-                            <h1>ONG Team - A free template by Bootstrap Temple</h1><a href="/posts" className="hero-link">Ver posts</a>
+                            <h1>ONG Team - A free template by Bootstrap Temple</h1>
+                            <Link to="/posts" className="hero-link">Ver posts</Link>
                         </div>
                     </div>
                 </div>
@@ -32,7 +34,8 @@ export const Home = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-7">
-                            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2><a href="/volunteers/create" className="hero-link">Voluntariado</a>
+                            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2>
+                            <Link to="/volunteers/create" className="hero-link">Voluntariado</Link>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ class Volunteers extends React.Component {
           <div className="mb-3">
             <h3>Unirse al voluntariado</h3>
           </div>
-          <form action method="POST">
+          <form action="#" method="POST">
             {/* Name */}
             <div className="form-group">
               <label htmlFor="first_name">Nombre</label>

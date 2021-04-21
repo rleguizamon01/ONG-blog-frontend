@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink } from "react-router-dom";
 
 export const Header = () => {
     return (
@@ -18,16 +19,17 @@ export const Header = () => {
                     {/* <!-- Navbar Menu --> */}
                     <div id="navbarcollapse" className="collapse navbar-collapse">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item"><a href="{{ route('welcome') }}"
-                                                    className="nav-link {{ Route::is('welcome') ? 'active' : '' }}">Inicio</a></li>
-                            <li className="nav-item"><a href="{{ route('posts.index') }}"
-                                                    className="nav-link {{ Route::is('posts.index') ? 'active' : '' }}">Posts</a>
+                            <li className="nav-item">
+                                <NavLink exact to="/" className="nav-link">Inicio</NavLink>
                             </li>
-                            <li className="nav-item"><a href="{{ route('volunteers.create') }}"
-                                                    className="nav-link {{ Route::is('volunteers.create') ? 'active' : '' }}">Voluntariado</a>
+                            <li className="nav-item">
+                                <NavLink to="/posts" className="nav-link">Posts</NavLink>
                             </li>
-                            <li className="nav-item"><a href="{{ route('donations.create') }}"
-                                                    className="nav-link {{ Route::is('donations.create') ? 'active' : '' }}">Donar</a>
+                            <li className="nav-item">
+                                <NavLink to="/volunteers/create" className="nav-link">Voluntariado</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/donations/create" className="nav-link">Donar</NavLink>
                             </li>
                             {/* <!-- Authentication Links --> */}
                             {/* @guest

@@ -1,7 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const Subscription = () => {
     return (
+
+        <Formik
+      initialValues={{
+        first_name:"",
+        last_name:"",
+        email:"",
+        phone_number:"",
+        birth_date:"",
+        body:"",
+      }}
+      onSubmit={(values) => console.log(values)}
+    >
         <section className="newsletter no-padding-top m-3">
             <div className="container">
                 <div className="row">
@@ -11,44 +24,63 @@ export const Subscription = () => {
                     </div>
                     <div className="col-md-12">
                         <div className="form-holder">
-                            <form method="post" action="{{route('subscribers.store')}}">
+                            <Form>
                                 {/* @csrf   CAMBIAR */}
                                 <div className="form-row align-items-end">
                                     <div className="col-12 col-md-3">
                                         <label htmlFor="first_name">Nombre</label>
-                                        <input type="text" className="form-control form-control-sm" id="first_name" name="first_name" placeholder="Ingrese su nombre ..." defaultValue=""/>
-
-                                        {/* @error('first_name')    CAMBIAR */}
-                                            {/* <div className="error"> {{ $errors->first('first_name') }} </div>  CAMBIAR */}
-                                        {/* @enderror */}
+                                        <Field
+                                        className='form-control'
+                                        name='first_name'
+                                        placeholder=''
+                                        type='text'
+                                        />
+                                        <ErrorMessage
+                                        name='first_name'
+                                        component='div'
+                                        className='field-error text-danger'
+                                        />
                                     </div>
 
                                     <div className="col-12 col-md-3">
                                         <label htmlFor="last_name">Apellido</label>
-                                        <input type="text" className="form-control form-control-sm" id="last_name" name="last_name" placeholder="Ingrese su apellido" defaultValue=""/>
-
-                                        {/* @error('last_name')   CAMBIAR */}
-                                            {/* <div className="error"> {{ $errors->first('last_name') }} </div>   CAMBIAR */}
-                                        {/* @enderror    CAMBIAR */}
+                                        <Field
+                                        className='form-control'
+                                        name='last_name'
+                                        placeholder=''
+                                        type='text'
+                                        />
+                                        <ErrorMessage
+                                        name='last_name'
+                                        component='div'
+                                        className='field-error text-danger'
+                                        />
                                     </div>
 
                                     <div className="col-12 col-md-3">
                                         <label htmlFor="email">Email</label>
-                                        <input type="email" className="form-control form-control-sm" id="email" name="email" placeholder="Ingrese su email" defaultValue=""/>
-
-                                        {/* @error('email')    CAMBIAR */}
-                                            {/* <div className="error"> {{ $errors->first('email') }} </div>   CAMBIAR */}
-                                        {/* @enderror    CAMBIAR */}
+                                        <Field
+                                        className='form-control'
+                                        name='email'
+                                        placeholder=''
+                                        type='text'
+                                        />
+                                        <ErrorMessage
+                                        name='email'
+                                        component='div'
+                                        className='field-error text-danger'
+                                        />
                                     </div>
                                     <div className="col-12 col-md-3">
                                         <button type="submit" className="submit mt-4">Suscribirse</button>
                                     </div>
                                 </div>
-                            </form>
+                            </Form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        </Formik>
     )
 }

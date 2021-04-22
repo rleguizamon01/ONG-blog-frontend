@@ -1,33 +1,56 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import Pagination from 'react-bootstrap-4-pagination';
+import PostList from './PostList'
 
 export const Posts = () => {
+
+    const [posts, setPosts] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1);
+    const per_page = 3;
+    const [totalPages, setTotalPages] = useState(0);
+
+    useEffect(() => {
+        fetchPosts(pageNumber);
+    }, []);
+
+    const fetchPosts = async (pageNumber = 1) => {
+        const url = `http://127.0.0.1:8000/api/posts?page=${pageNumber}`;
+        const response = await axios.get(url);
+        const currentposts = await response.data.data;
+        const last_page = await response.data.last_page;
+        console.log("fetchPosts");
+        console.log("pageNumber",pageNumber);
+        console.log("response",response);
+        console.log("posts",currentposts);
+        console.log("last_page",last_page);
+        setPosts(currentposts);
+        setTotalPages(last_page);
+    }
+
     return(
         <div className="container">
-            <div className="row">
-                <div className="card col-xl-6 border-0 mb-5 pr-5 pl-5">
-                    <div className="card-body">
-                         {/*Photo*/}
-                        <a href="#"><img src="https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" className="card-img-top mb-3"></img></a>
-                         {/*Title*/}
-                        <a href="{{ route('posts.show', $post->id) }}" className="text-decoration-none">
-                            <h5 className="card-title">Titulo</h5>
-                        </a>
-                        <div className="d-flex justify-content-between mt-2 mb-2">
-                            {/* Date*/}
-                            <div className="text-uppercase text-muted font-monospace">
-                                Fecha de creacion
-                            </div>
-                             {/*Category*/}
-                            <div className="text-capitalize text-muted">
-                                Categoria: categoria
-                            </div>
-                        </div>
-                         {/*Author*/}
-                        <p className="card-text text-muted fw-bold">Nombre autor</p>
-                        </div>
-                </div>
-            </div>
-            <div className="d-flex justify-content-center mb-4">links</div>
+
+            <PostList posts={posts}/>
+
+            <div className="d-flex justify-content-center mb-4">
+                <Pagination
+                    shadow
+                    size="lg"
+                    totalPages={totalPages}
+                    currentPage={pageNumber}
+                    showMax={7}
+                    prevNext
+                    activeBgColor="#868686"
+                    activeBorderColor="#868686"
+                    onClick={(page)=>{
+                        setPageNumber(page);
+                        fetchPosts(page);
+                    }}
+                />
+
+            </div>   
         </div>
+
     );
 };

@@ -4,6 +4,26 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const Volunteers = () => {
 
+  const maxDate = new Date()
+  maxDate.setFullYear(maxDate.getFullYear()-18)
+
+  const formSchema = Yup.object().shape({
+    first_name : Yup.string('Debe ingresar un nombre válido.')
+    .required('Debe ingresar un nombre.'),
+    last_name : Yup.string('Debe ingresar un apellido válido.')
+    .required('Debe ingresar un apellido.'),
+    email: Yup.string().email('El email debe tener el formato "mi_email@ejemplo.com"')
+    .required('Debe ingresar dirección de email.'),
+    phone_number: Yup.string()
+    .matches(/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, 'El numero telefonico no tiene el formato correcto.')
+    .required('Debe ingresar su numero telefonico'),
+    birth_date: Yup.date().max(maxDate, 'Debe ser mayor de 18 años para poder ser voluntario')
+    .required('Debe ingresar su fecha de nacimiento'),
+    body: Yup.string().min(50, 'Debe tener al menos 50 caracteres.')
+    .max(500, 'No debe superar los 500 caracteres.')
+    .required('El campo es obligatorio'),
+  });
+
   return (
 
     <Formik
@@ -15,6 +35,7 @@ export const Volunteers = () => {
         birth_date:"",
         body:"",
       }}
+      validationSchema={formSchema}
       onSubmit={(values) => console.log(values)}
     >
 

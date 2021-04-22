@@ -7,7 +7,6 @@ export const Posts = () => {
 
     const [posts, setPosts] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
-    const per_page = 3;
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {

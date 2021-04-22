@@ -1,19 +1,28 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 export const Subscription = () => {
+
+    const formSchema = Yup.object().shape({
+        first_name : Yup.string('Debe ingresar un nombre válido.')
+        .required('Debe ingresar un nombre.'),
+        last_name : Yup.string('Debe ingresar un apellido válido.')
+        .required('Debe ingresar un apellido.'),
+        email: Yup.string().email('El email debe tener el formato "mi_email@ejemplo.com"')
+        .required('Debe ingresar dirección de email.'),
+      });
+
     return (
 
         <Formik
-      initialValues={{
-        first_name:"",
-        last_name:"",
-        email:"",
-        phone_number:"",
-        birth_date:"",
-        body:"",
-      }}
-      onSubmit={(values) => console.log(values)}
+        initialValues={{
+            first_name:"",
+            last_name:"",
+            email:"",
+        }}
+        validationSchema={formSchema}
+        onSubmit={(values) => console.log(values)}
     >
         <section className="newsletter no-padding-top m-3">
             <div className="container">

@@ -93,5 +93,6 @@ export const Subscription = () => {
         </Container>
       </section>
     </Formik>
-)
+  )
 }
+export default Subscription

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
     return (
@@ -26,9 +27,9 @@ export const Footer = () => {
                     <Col md={4}>
                         <div className="menus d-flex">
                             <ul className="list-unstyled">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Volunteers</a></li>
-                                <li><a href="#">Subscribers</a></li>
+                                <li><Link to="/">Blog</Link></li>
+                                <li><Link to="/volunteers/create">Volunteers</Link></li>
+                                <li><Link to="/subscribers/create">Subscribers</Link></li>
                             </ul>
                         </div>
                     </Col>

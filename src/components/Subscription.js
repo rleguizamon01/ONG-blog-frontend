@@ -39,24 +39,19 @@ export const Subscription = () => {
                   <Form.Row className="align-items-end">
                     <Col xs={12} md={3}>
                       <Form.Label htmlFor="first_name">Nombre</Form.Label>
-                      <Form.Control type="text" size="sm" id="first_name" name="first_name"
-                                    placeholder="Ingrese su nombre ..." defaultValue=""/>
 
                       <Field
-                        className='form-control' name='first_name' placeholder='' type='text'/>
+                        className='form-control' name='first_name' placeholder='Ingrese su nombre ...' type='text'/>
                       <ErrorMessage
                         name='first_name' component='div' className='field-error text-danger'/>
                     </Col>
 
                     <Col xs={12} md={3}>
                       <Form.Label htmlFor="last_name">Apellido</Form.Label>
-                      <Form.Control type="text" size="sm" id="last_name" name="last_name"
-                                    placeholder="Ingrese su apellido" defaultValue=""/>
-
                       <Field
                         className='form-control'
                         name='last_name'
-                        placeholder=''
+                        placeholder='Ingrese su apellido'
                         type='text'
                       />
                       <ErrorMessage
@@ -68,12 +63,10 @@ export const Subscription = () => {
 
                     <Col xs={12} md={3}>
                       <Form.Label htmlFor="email">Email</Form.Label>
-                      <Form.Control type="email" size="sm" id="email" name="email" placeholder="Ingrese su email"
-                                    defaultValue=""/>
                       <Field
                         className='form-control'
                         name='email'
-                        placeholder=''
+                        placeholder='Ingrese su email'
                         type='text'
                       />
                       <ErrorMessage

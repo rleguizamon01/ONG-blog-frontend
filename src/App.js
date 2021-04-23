@@ -1,20 +1,25 @@
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { Home } from './components/Home';
+import Home from './components/Home';
 import { Posts } from './components/Posts';
 import Donation from './components/Donation';
 import Subscription  from './components/Subscription';
 import Volunteers from './components/Volunteers';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Post from "./components/Post";
+import {Container} from "react-bootstrap";
 
 function App() {
   return (
     <Router>
-      <div>
+      <Container fluid>
         <Header/>
         <Switch>
           <Route exact path='/'>
             <Home/>
+          </Route>
+          <Route path='/posts/:id'>
+            <Post/>
           </Route>
           <Route path='/posts'>
             <Posts/>
@@ -30,7 +35,7 @@ function App() {
           </Route>
         </Switch>
         <Footer/>
-      </div>
+      </Container>
     </Router>
   );
 }

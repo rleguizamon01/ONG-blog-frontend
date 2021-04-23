@@ -4,7 +4,7 @@ import {Container, Row, Col} from 'react-bootstrap'
 import {Link} from "react-router-dom";
 import SliderImage from "./SliderImage";
 
-const Home = () => {
+let Home = () => {
   return (
     <>
       <SliderImage />
@@ -57,7 +57,6 @@ const Home = () => {
   )
 }
 
-export default Home
 
 //   export const Home = () => {
 //     return (
@@ -90,3 +89,5 @@ export default Home
 //         </div>
 //     )
 // }
+
+export default Home

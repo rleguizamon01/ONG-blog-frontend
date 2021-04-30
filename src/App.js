@@ -8,6 +8,7 @@ import Volunteers from './components/Volunteers';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Post from "./components/Post";
 import {Container} from "react-bootstrap";
+import UsersList from "./components/UsersList";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path='/subscribers/create'>
             <Subscription/>
+          </Route>
+          <Route path='/users'>
+            <UsersList/>
           </Route>
         </Switch>
         <Footer/>

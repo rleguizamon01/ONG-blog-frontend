@@ -11,11 +11,11 @@ const PostList = ({posts}) => {
           <div className="card col-xl-6 border-0 mb-5 pr-5 pl-5">
             <div className="card-body">
               {/* <!-- Photo --> */}
-              <Link to={`/posts/show/{post.id}`}>
+              <Link to={`posts/${post.id}`}>
                 <img src={post.photo} className="card-img-top mb-3"/>
               </Link>
               {/* <!-- Title --> */}
-              <Link to={`posts/show/${post.id}`} className="text-decoration-none">
+              <Link to={`posts/${post.id}`} className="text-decoration-none">
                 <h5 className="card-title"> {post.title}</h5>
               </Link>
               <div className="d-flex justify-content-between mt-2 mb-2">

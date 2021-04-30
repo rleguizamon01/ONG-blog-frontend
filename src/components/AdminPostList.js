@@ -57,7 +57,7 @@ const AdminPostList = ({posts}) => {
                                 {post.user.first_name} {post.user.last_name}
                             </td>
                             <td>
-                                {post.status}
+                                {post.approved_at ? "approved" : "pending"}
                             </td>
                             <td>
                                 <button onClick={()=>handleClickDelete(post.id)} type="button" className="btn btn-primary fa fa-trash btn-eliminar"></button>

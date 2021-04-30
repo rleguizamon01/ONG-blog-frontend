@@ -89,3 +89,6 @@ section.board .container {
 input[type="search"]::-webkit-search-cancel-button {
     display: none;
 }
+.navbar-nav a{
+    padding-left: 30px;
+}

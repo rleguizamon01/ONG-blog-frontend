@@ -18,6 +18,7 @@ export const Header = () => {
           <Nav className="ml-auto">
             <NavLink to="/">Inicio</NavLink>
             <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/users">Usuarios</NavLink>
             <NavLink to="/volunteers/create">Voluntariado</NavLink>
             <NavLink to="/donations/create">Donar</NavLink>
           </Nav>

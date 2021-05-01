@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { Container, Card, Row } from 'react-bootstrap';
 import axios from 'axios';
 import Pagination from "react-js-pagination";
-import PostList from './PostList'
+import AdminPostList from './AdminPostList'
 
-export const Posts = () => {
+export const AdminPosts = () => {
 
     const [posts, setPosts] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
@@ -30,10 +30,11 @@ export const Posts = () => {
         setPageNumber(pageNumber);
         fetchPosts(pageNumber);
     }
+    
     return(
         <Container>
             <Row>
-                <PostList posts={posts}/>
+                <AdminPostList posts={posts}/>
             </Row>
 
             <div className="d-flex justify-content-center mb-4">

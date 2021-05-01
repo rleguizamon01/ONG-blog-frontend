@@ -11,6 +11,7 @@ import {Container} from "react-bootstrap";
 import Category from './components/Category';
 import CategoryAdd from './components/CategoryAdd';
 import CategoryEdit from './components/CategoryEdit';
+import UsersList from "./components/UsersList";
 
 function App() {
   return (
@@ -45,8 +46,9 @@ function App() {
           <Route path='/categories'>
             <Category/>
           </Route>
-          
-          
+          <Route path='/users'>
+            <UsersList/>
+          </Route>
         </Switch>
         <Footer/>
       </Container>

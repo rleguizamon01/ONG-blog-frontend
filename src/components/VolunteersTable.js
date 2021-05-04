@@ -31,7 +31,7 @@ const VolunteerTable = ({volunteers}) => {
             <td>{volunteer.status}</td>
             
   {{ accepted: <td><i class="far fa-trash-alt"></i></td>,
-     rejected: <td>ddfffffd</td>
+     rejected: <td><i class="btn fas fa-question text-warning" aria-hidden="true"></i></td>
   }[volunteer.status]}
 
           </tr>

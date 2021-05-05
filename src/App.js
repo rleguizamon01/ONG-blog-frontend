@@ -1,7 +1,7 @@
 import {Header} from './components/Header';
 import {Footer} from './components/Footer';
 import Home from './components/Home';
-//import { Posts } from './components/Posts';
+import { Posts } from './components/Posts';
 import Donation from './components/Donation';
 import Subscription from './components/Subscription';
 import Volunteers from './components/Volunteers';
@@ -31,9 +31,9 @@ function App() {
           <Route path='/posts/:id'>
             <Post/>
           </Route>
-          {/*<Route path='/posts'>
+          <Route path='/posts'>
             <Posts/>
-          </Route>*/}
+          </Route>
           <Route path='/volunteers/create'>
             <Volunteers/>
           </Route>

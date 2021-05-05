@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
+import Header from './Header'
 
 export const Volunteers = () => {
 
@@ -25,6 +26,8 @@ export const Volunteers = () => {
   });
 
   return (
+    <>
+    <Header/>
     <Formik initialValues={{
       first_name: "",
       last_name: "",
@@ -135,7 +138,7 @@ export const Volunteers = () => {
         <button type="submit" className="btn btn-primary mt-2">Unirse</button>
       </div>
     </Formik>
-
+  </>
   );
 }
 

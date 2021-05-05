@@ -1,8 +1,11 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import Header from './Header'
 
 export const Post = () => { 
   return (
+    <>
+    <Header/>
     <main className="post blog-post col-lg-10">
         <Container>
             <div className="post-single">
@@ -78,6 +81,7 @@ export const Post = () => {
             </div>
         </Container>
     </main>
+    </>
   );
 }
 

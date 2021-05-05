@@ -9,7 +9,7 @@ const Header = () => {
   function logOut()
   {
     localStorage.clear();
-    history.push("/register");
+    history.push("/login");
   }
   
   return (

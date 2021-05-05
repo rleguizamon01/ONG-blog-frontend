@@ -3,7 +3,6 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
-import Pagination from "react-bootstrap-4-pagination";
 
 const UsersList = () => {
     const [data,setData] = useState([]);

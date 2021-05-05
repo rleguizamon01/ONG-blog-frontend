@@ -5,7 +5,9 @@ import Home from './components/Home';
 import Donation from './components/Donation';
 import Subscription from './components/Subscription';
 import Volunteers from './components/Volunteers';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Login from './components/Login';
+import Register from './components/Register';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Post from "./components/Post";
 import {Container} from "react-bootstrap";
 import Category from './components/Category';
@@ -14,12 +16,14 @@ import CategoryEdit from './components/CategoryEdit';
 import UsersList from "./components/UsersList";
 import {AdminPosts} from './components/AdminPosts';
 import PostCreate from "./components/PostCreate";
+import Protected from "./components/Protected";
+import ProtectedAdmin from "./components/ProtectedAdmin";
+
 
 function App() {
   return (
     <Router>
       <Container fluid>
-        <Header/>
         <Switch>
           <Route exact path='/'>
             <Home/>
@@ -52,13 +56,19 @@ function App() {
             <UsersList/>
           </Route>
           <Route path='/admin/posts/create'>
-            <PostCreate/>
+          <Protected Cmp={PostCreate}/>
           </Route>
           <Route path='/admin/posts'>
-            <AdminPosts/>
+            <ProtectedAdmin Cmp={AdminPosts}/>
           </Route>
           <Route path='/admin/posts/:id'>
-            <Post/>
+            <ProtectedAdmin Cmp={Post}/>
+          </Route>
+          <Route path='/login'>
+            <Login/>
+          </Route>
+          <Route path='/register'>
+            <Register/>
           </Route>
         </Switch>
         <Footer/>

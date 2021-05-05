@@ -3,6 +3,7 @@ import { Container, Card, Row } from 'react-bootstrap';
 import axios from 'axios';
 import Pagination from "react-js-pagination";
 import PostList from './PostList'
+import Header from './Header'
 
 export const Posts = () => {
 
@@ -31,6 +32,8 @@ export const Posts = () => {
         fetchPosts(pageNumber);
     }
     return(
+        <>
+        <Header/>
         <Container>
             <Row>
                 <PostList posts={posts}/>
@@ -48,5 +51,6 @@ export const Posts = () => {
                 />
             </div>
         </Container>
+        </>
     );
 };

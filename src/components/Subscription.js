@@ -2,6 +2,8 @@ import React from 'react'
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import {Formik, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import Header from './Header'
+
 
 export const Subscription = () => {
 
@@ -15,6 +17,8 @@ export const Subscription = () => {
   });
 
   return (
+    <>
+    <Header/>
 
     <Formik
       initialValues={{
@@ -86,6 +90,7 @@ export const Subscription = () => {
         </Container>
       </section>
     </Formik>
+    </>
   )
 }
 export default Subscription

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import Header from './Header'
 
 export const Volunteer = () => {
     return(
+      <>
+      <Header/>
       <Container>
       <div className="m-4">
         <div className="mb-3">
@@ -48,5 +51,6 @@ export const Volunteer = () => {
         </Form>
       </div>
     </Container>
+    </>
     ); 
 }

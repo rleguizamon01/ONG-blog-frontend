@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import {Formik, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import Header from './Header'
 
 const PostCreate = () => {
 
@@ -26,6 +27,8 @@ const PostCreate = () => {
 
     
     return (
+        <>
+        <Header/>
         <Formik
             initialValues={{
                 category_id: "",
@@ -65,6 +68,7 @@ const PostCreate = () => {
             </Container>
             )}
         </Formik>
+        </>
     )
 }
 

@@ -1,9 +1,8 @@
 import React, { useState , useEffect} from 'react';
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import Header from './Header'
+import {Table, Button, Modal} from 'react-bootstrap';
+import Header from './Header';
+import {Link} from 'react-router-dom'
 
 const UsersList = () => {
     const [data,setData] = useState([]);
@@ -20,13 +19,6 @@ const UsersList = () => {
             .then(res =>setData(res.data))
             .catch(err => console.log(err))
             }
-    // const fetchPosts = async (pageNumber = 1) => {
-    //     const response = await axios.get(url);
-    //     const currentposts = await response.data.data;
-    //     const last_page = await response.data.last_page;
-    //     setPosts(currentposts);
-    //     setTotalPages(last_page);
-    // }
             // Delete user
     const deleteUser = async (userDetails) => {
          await axios.delete('http://127.0.0.1:8000/api/users/'+userDetails.id)
@@ -36,6 +28,9 @@ const UsersList = () => {
     return (
         <>
         <Header/>
+            <Link to={'/register'}>
+                <Button className="mt-2 mb-2" variant="success">Registar usuario</Button>
+            </Link>
         <div>
     <Table striped bordered hover size="sm">
         <thead>

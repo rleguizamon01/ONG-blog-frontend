@@ -18,8 +18,6 @@ export const Subscription = () => {
 
   return (
     <>
-    <Header/>
-
     <Formik
       initialValues={{
         first_name: "",

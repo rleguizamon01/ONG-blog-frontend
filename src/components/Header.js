@@ -27,7 +27,6 @@ const Header = () => {
           <Nav className="ml-auto align-items-center">
             <NavLink to="/">Inicio</NavLink>
             <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/users">Usuarios</NavLink>
             <NavLink to="/volunteers/create">Voluntariado</NavLink>
             <NavLink to="/donations/create">Donar</NavLink>
           </Nav>
@@ -36,9 +35,11 @@ const Header = () => {
             ?
             <NavDropdown title="Admin" id="collasible-nav-dropdown">
               <NavLink to="/admin/posts">Posts</NavLink>
+              <NavLink to="/admin/users">Usuarios</NavLink>
+              <NavLink to="/admin/categories">Categorias</NavLink>
+              <NavLink to="/admin/volunteers">Voluntarios</NavLink>
               {/* <NavLink to="/admin/voluntarios">Voluntarios</NavLink>
               <NavLink to="/admin/comentarios">Comentarios</NavLink>
-              <NavLink to="/admin/categorias">Categorias</NavLink>
               <NavLink to="/admin/suscriptores">Suscriptores</NavLink>
               <NavLink to="/admin/donaciones">Donaciones</NavLink> */}
             </NavDropdown>

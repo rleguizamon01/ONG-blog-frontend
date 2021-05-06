@@ -1,18 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import Header from './Header'
 
 export const Post = () => { 
+
+    const [category, setCategory] = useState("");
+    const [photo, setPhoto] = useState("");
+    const [author, setAuthor] = useState("");
+    const [created_at, setCreated_at] = useState("");
+    const [body, setBody] = useState("");
+    const [comments, setComments] = useState([]);
+    const { id } = useParams();
+
+    useEffect(() => {
+        fetchPost(id);
+    }, []);
+
+    const fetchPost = async (id) => {
+        const url = `http://127.0.0.1:8000/api/posts/${id}`;
+        const response = await axios.get(url);
+        const post = await response.data;
+        setCategory(post.category.name);
+        setPhoto(post.photo);
+        setAuthor(post.user.first_name+' '+post.user.last_name);
+        setCreated_at(post.created_at);
+        setBody(post.body);
+        setComments(post.comments);
+
+    }
   return (
     <>
     <Header/>
     <main className="post blog-post col-lg-10">
         <Container>
             <div className="post-single">
-                <div className="post-thumbnail"><img src="https://via.placeholder.com/640x480.png/0077ee?text=eligendi" className="img-fluid" alt="Imagen post"></img></div>
+                <div className="post-thumbnail"><img src={photo} className="img-fluid" alt="Imagen post"></img></div>
                 <div className="post-details">
                     <div className="post-meta d-flex justify-content-between">
-                        <div className="title">Categoria: categoria</div>
+                        <div className="title">Categoria: {category}</div>
                     </div>
                 </div>
 
@@ -21,30 +48,28 @@ export const Post = () => {
                     <div className="author d-flex align-items-center flex-wrap">
                         <div className="title">
                             <i className="fas fa-user"></i>
-                            <span>Autor</span>
+                            <span>{author}</span>
                         </div>
                     </div>
                     <div className="d-flex align-items-center flex-wrap">
                         <div className="date">
                             <i className="fas fa-table"></i>
-                            Fecha creacion
+                            {created_at}
                         </div>
                         <div className="comments meta-last">
                             <i className="fas fa-comments"></i>
-                            cantidad comentarios
+                            {comments.length}
                         </div>
                     </div>
                 </div>
 
-                <h1>Titulo</h1>
-
                 <div className="post-body">
-                    <p>Magnam voluptatem ea repellat reiciendis ut nulla et dolore. Porro possimus id voluptates rerum dolores et dolor. Voluptate ad quis dolore qui sit pariatur.</p>.
+                    <p>{body}</p>
                 </div>
 
                 <div className="post-comments">
                     <header>
-                        <h3 className="h6">Comentarios del post<span className="no-of-comments"></span></h3>
+                        <h3 className="h6">Comentarios del post<span className="no-of-comments">{comments.length}</span></h3>
                     </header>
 
                     <div className="add-comment">
@@ -76,7 +101,20 @@ export const Post = () => {
                         </Row>
                     </div>
                     {/* <!-- Comments --> */}
-                    <div id="comment-section"></div> 
+                    <div>
+                    {comments.map( comment => (
+                        <div class="comment" key={comment.id}>
+                            <div class="comment-header d-flex justify-content-between">
+                                <div class="user d-flex align-items-center">
+                                    <div class="title"><strong>{comment.email}</strong></div>
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <p>{comment.body}</p>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
                 </div>                    
             </div>
         </Container>

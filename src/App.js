@@ -64,6 +64,15 @@ function App() {
           <Route path='/admin/posts/:id'>
             <ProtectedAdmin Cmp={Post}/>
           </Route>
+          <Route path='/admin/categories'>
+            <ProtectedAdmin Cmp={Category}/>
+          </Route>
+          <Route path='/admin/volunteers'>
+            <ProtectedAdmin Cmp={Volunteers}/>
+          </Route>
+          <Route path='/admin/users'>
+            <ProtectedAdmin Cmp={UsersList}/>
+          </Route>
           <Route path='/login'>
             <Login/>
           </Route>

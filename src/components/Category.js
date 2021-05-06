@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import CategoryAdd from './CategoryAdd';
 import CategoryApi from './CategoryApi';
+import Header from './Header';
 
 
 const Category = () => {
@@ -75,6 +76,8 @@ const Category = () => {
     }
 
     return (
+        <>
+        <Header/>
         <Container>
         <div className="d-flex justify-content-center my-4">
           <div className="col-xs-12 col-sm-11 col-md-11 col-lg-10 col-xl-10">
@@ -104,6 +107,7 @@ const Category = () => {
           </div>
         </div>
       </Container>
+      </>
     )
 }
 

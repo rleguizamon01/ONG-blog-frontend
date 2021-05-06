@@ -3,6 +3,7 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
+import Header from './Header'
 
 const UsersList = () => {
     const [data,setData] = useState([]);
@@ -33,6 +34,8 @@ const UsersList = () => {
              .catch(err => console.log(err))
     }
     return (
+        <>
+        <Header/>
         <div>
     <Table striped bordered hover size="sm">
         <thead>
@@ -92,6 +95,7 @@ const UsersList = () => {
                 </Modal.Body>
             </Modal>
     </div>
+    </>
     )
 }
 export default UsersList;

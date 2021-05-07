@@ -8,6 +8,8 @@ import Header from './Header'
 const PostCreate = () => {
 
     const [categories, setCategories] = useState([]);
+    const user = JSON.parse(localStorage.getItem('user-info'));
+    const user_id = user.id;
 
     useEffect(() => {
         fetchCategories();
@@ -36,7 +38,17 @@ const PostCreate = () => {
                 body: "",
             }}
             validationSchema={formSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+                axios({
+                  method: "post",
+                  url: "http://127.0.0.1:8000/api/posts",
+                  data: { user_id: user_id,
+                        category_id: values.category_id,
+                        title: values.title,
+                        body: values.body,
+                        photo:"https://via.placeholder.com/640x480.png/0066cc?text=et"}
+                })
+              }}
         >{formik => (
             <Container>
                 <Row>

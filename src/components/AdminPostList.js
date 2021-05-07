@@ -60,8 +60,8 @@ const AdminPostList = ({posts}) => {
                                 {post.approved_at ? "approved" : "pending"}
                             </td>
                             <td>
-                                <button onClick={()=>handleClickDelete(post.id)} type="button" className="btn btn-primary fa fa-trash btn-eliminar"></button>
-                                <button onClick={()=>handleClickDeleteForEver(post.id)} type="button" className="btn btn-danger fa fa-trash btn-eliminar"></button>
+                                <button onClick={()=>handleClickDelete(post.id)} type="button" className="btn btn-info"><i className="fas fa-eye-slash text-white"></i></button>
+                                <button onClick={()=>handleClickDeleteForEver(post.id)} type="button" className="btn btn-danger"><i className="fa fa-trash text-white"></i></button>
                             </td>
                         </tr>
                         )}

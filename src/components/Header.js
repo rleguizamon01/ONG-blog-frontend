@@ -4,7 +4,11 @@ import {Link, NavLink, useHistory} from "react-router-dom";
 const Header = () => {
   let history = useHistory();
 
-  const user = JSON.parse(localStorage.getItem('user-info'));
+  const data = JSON.parse(localStorage.getItem('user-info'));
+  const user = data && JSON.parse(localStorage.getItem('user-info')).data.user;
+  console.log(localStorage.getItem('user-info'));
+  console.log(data);
+  console.log(user);
 
   function logOut()
   {

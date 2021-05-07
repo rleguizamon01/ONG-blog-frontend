@@ -18,7 +18,7 @@ const Login = () => {
     useEffect(() => {
         if(localStorage.getItem('user-info'))
         {
-            history.push("/");
+            history.push("/home");
         }
     }, [])
 
@@ -32,22 +32,24 @@ const Login = () => {
                     validationSchema={formSchema}
                     onSubmit={(values) =>
                     {
-                        axios({
-                            method:'POST',
-                            url: "http://127.0.0.1:8000/api/login",
-                            data: {
-                                email: values.email,
-                                password: values.password
-                            },
-                            headers:{
-                                'Access-Control-Allow-Origin' : '*',
-                                'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                                "Content-Type":"application/json",
-                                "Accept":"application/json"
-                            }
-                        })
-                            .then(res => localStorage.setItem("user-info",JSON.stringify(res)));
-                        history.push("/");
+                        axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
+                            axios({
+                                method:'POST',
+                                url: "http://127.0.0.1:8000/api/login",
+                                data: {
+                                    email: values.email,
+                                    password: values.password
+                                },
+                                headers:{
+                                    'Access-Control-Allow-Origin' : '*',
+                                    'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                                    "Content-Type":"application/json",
+                                    "Accept":"application/json"
+                                }
+                            })
+                                .then(res => localStorage.setItem("user-info",JSON.stringify(res)));
+                        });
+                        history.push("/home");
                     }}
             >
             <div className="col-sm-6 offset-sm-3">

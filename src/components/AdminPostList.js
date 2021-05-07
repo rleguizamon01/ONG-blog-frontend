@@ -6,22 +6,39 @@ const AdminPostList = ({posts}) => {
 
     const handleClickDelete=(id)=> {
         deletePost(id);
-        console.log(id);
+        // console.log(id);
     }
     const deletePost = async (id) => {
-        const url = `http://127.0.0.1:8000/api/posts/${id}`;
-        const response = await axios.delete(url);
-        console.log(response);
+        const response = await axios({
+            method: "delete",
+            url: `http://127.0.0.1:8000/api/posts/${id}`,
+            withCredentials: true,
+            headers: {
+                Authorization: 'Bearer ' + (JSON.parse(localStorage.getItem('user-info')).data.token),
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+          });
+        // console.log(response);
+
     }
 
     const handleClickDeleteForEver=(id)=> {
         deletePostForEver(id);
-        console.log(id);
+        // console.log(id);
     }
     const deletePostForEver = async (id) => {
-        const url = `http://127.0.0.1:8000/api/posts/destroy/${id}`;
-        const response = await axios.delete(url);
-        console.log(response);
+        const response = await axios({
+            method: "delete",
+            url: `http://127.0.0.1:8000/api/posts/destroy/${id}`,
+            withCredentials: true,
+            headers: {
+                Authorization: 'Bearer ' + (JSON.parse(localStorage.getItem('user-info')).data.token),
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+          });
+        // console.log(response);
     }
 
   return (

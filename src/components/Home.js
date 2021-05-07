@@ -11,20 +11,6 @@ let Home = () => {
     <>
       <Header/>
       <SliderImage />
-
-      <section style={{
-        backgroundImage: "url(https://images.unsplash.com/photo-1557089041-7fa93ffc2e08?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80)",
-        backgroundSize: 'cover', backgroundPosition: 'center center'
-      }} className="hero">
-        <Container>
-          <Row>
-            <Col lg={7}>
-              <h1>ONG Team - A free template by Bootstrap Temple</h1>
-              <Link to="/posts" className="hero-link">Ver posts</Link>
-            </Col>
-          </Row>
-        </Container>
-      </section>
       {/* Intro Section */}
       <section className="intro">
         <Container>

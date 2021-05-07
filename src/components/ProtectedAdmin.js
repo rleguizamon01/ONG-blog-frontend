@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const ProtectedAdmin = ({Cmp}) => {
     let history = useHistory();
     useEffect(() => {
-        if(!localStorage.getItem('user-info') || !(JSON.parse(localStorage.getItem('user-info')).role==="admin") )
+        if(!localStorage.getItem('user-info') || !(JSON.parse(localStorage.getItem('user-info')).data.user.role==="admin") )
         {
             history.push("/");
         }

@@ -8,7 +8,7 @@ import Header from './Header'
 const PostCreate = () => {
 
     const [categories, setCategories] = useState([]);
-    const user = JSON.parse(localStorage.getItem('user-info'));
+    const user = JSON.parse(localStorage.getItem('user-info')).data.user;
     const user_id = user.id;
 
     useEffect(() => {

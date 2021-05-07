@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 
 export const VolunteersFilterForm = () => {
+
+  
+
 
   return (
     <Formik initialValues={{
@@ -19,9 +22,9 @@ export const VolunteersFilterForm = () => {
           className="form-control" 
           name="status"
           as="select">
-          <option value='all'>Todos</option>
-          <option value='active'>Activos</option>
-          <option value='delete'>Eliminados</option>
+          <option value='accepted'>Aceptados</option>
+          <option value='rejected'>Rechazados</option>
+          <option value='pending'>Pendientes</option>
           </Field>
           <ErrorMessage
             name='status'

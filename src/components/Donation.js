@@ -1,7 +1,10 @@
 import React from 'react';
+import Header from './Header'
 
 const Donation = () => {
     return (
+        <>
+        <Header/>
         <div className="container">
             <div className="m-4">
                 <div className="mb-3">
@@ -39,6 +42,7 @@ const Donation = () => {
                 </form>
             </div>
         </div>
+        </>
     )
 }
 

@@ -26,12 +26,13 @@ const VolunteerTable = ({volunteers}) => {
           <tr key={volunteer.id}>
             <td>{volunteer.first_name}</td>
             <td>{volunteer.last_name}</td>
-            <td>{volunteer.email}</td>
+            <td>{volunteer.email}</td> 
             <td>{volunteer.phone_number}</td>
             <td>{volunteer.status}</td>
             
-  {{ accepted: <td><i class="far fa-trash-alt"></i></td>,
-     rejected: <td><i class="btn fas fa-question text-warning" aria-hidden="true"></i></td>
+  {{ accepted: <td><i class="fas fa-trash-alt"></i></td>,
+     rejected: <td><i class="fas fa-check"></i></td>,
+     pending:<td><i class="fas fa-trash-alt"></i> <i class="fas fa-check"></i></td>
   }[volunteer.status]}
 
           </tr>

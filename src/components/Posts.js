@@ -1,30 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Card, Row } from 'react-bootstrap';
 import axios from 'axios';
-import Pagination from 'react-bootstrap-4-pagination';
+import Pagination from "react-js-pagination";
 import PostList from './PostList'
+import Header from './Header'
 
 export const Posts = () => {
 
     const [posts, setPosts] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const [totalPosts, setTotalPosts] = useState(1);
+    const [perPage, setPerPage] = useState(1);
 
     useEffect(() => {
-        fetchPosts(pageNumber);
+        fetchPosts();
     }, []);
 
     const fetchPosts = async (pageNumber = 1) => {
-      setPageNumber(pageNumber)
+        setPageNumber(pageNumber)
         const url = `http://127.0.0.1:8000/api/posts?page=${pageNumber}`;
         const response = await axios.get(url);
         const currentposts = await response.data.data;
-        const last_page = await response.data.last_page;
+        const total = await response.data.total;
+        const perPage = await response.data.per_page;
         setPosts(currentposts);
-        setTotalPages(last_page);
+        setTotalPosts(total);
+        setPerPage(perPage);
     }
-
+    const handlePageChange=(pageNumber)=> {
+        setPageNumber(pageNumber);
+        fetchPosts(pageNumber);
+    }
     return(
+        <>
+        <Header/>
         <Container>
             <Row>
                 <PostList posts={posts}/>
@@ -32,19 +41,16 @@ export const Posts = () => {
 
             <div className="d-flex justify-content-center mb-4">
                 <Pagination
-                  shadow
-                  size="lg"
-                  totalPages={totalPages}
-                  currentPage={pageNumber}
-                  showMax={7}
-                  prevNext
-                  activeBgColor="#868686"
-                  activeBorderColor="#868686"
-                  onClick={(page)=>{
-                      fetchPosts(page);
-                  }}
+                activePage={pageNumber}
+                itemsCountPerPage={perPage}   
+                totalItemsCount={totalPosts}
+                pageRangeDisplayed={5}
+                onChange={(pageNumber)=>handlePageChange(pageNumber)}
+                itemClass="page-item"
+                linkClass="page-link"
                 />
             </div>
         </Container>
+        </>
     );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
 import * as Yup from 'yup';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
+import axios from 'axios';
 
-export const VolunteerForm = () => {
+export const VolunteerCreate = () => {
 
   const maxDate = new Date()
   maxDate.setFullYear(maxDate.getFullYear() - 18)
@@ -17,7 +18,7 @@ export const VolunteerForm = () => {
     phone_number: Yup.string()
       .matches(/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, 'El numero telefonico no tiene el formato correcto.')
       .required('Debe ingresar su numero telefonico'),
-    birth_date: Yup.date().max(maxDate, 'Debe ser mayor de 18 años para poder ser voluntario')
+    birthdate: Yup.date().max(maxDate, 'Debe ser mayor de 18 años para poder ser voluntario')
       .required('Debe ingresar su fecha de nacimiento'),
     body: Yup.string().min(50, 'Debe tener al menos 50 caracteres.')
       .max(500, 'No debe superar los 500 caracteres.')
@@ -30,11 +31,23 @@ export const VolunteerForm = () => {
       last_name: "",
       email: "",
       phone_number: "",
-      birth_date: "",
+      birthdate: "",
       body: "",
     }}
             validationSchema={formSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+              console.log(values)
+              axios({
+                method: "post",
+                url: "http://127.0.0.1:8000/api/volunteers",
+                data: { first_name: values.first_name,
+                last_name: values.last_name,
+                email: values.email,
+                phone_number: values.phone_number,
+                birthdate: values.birthdate,
+                body: values.body}
+              })
+            }}
     >
       <Form>
       <div className="row flex-column p-5">
@@ -106,12 +119,12 @@ export const VolunteerForm = () => {
           <label htmlFor="birthdate">Fecha de nacimiento</label>
           <Field
             className='form-control'
-            name='birth_date'
+            name='birthdate'
             placeholder=''
             type='date'
           />
           <ErrorMessage
-            name='birth_date'
+            name='birthdate'
             component='div'
             className='field-error text-danger'
           />
@@ -142,4 +155,4 @@ export const VolunteerForm = () => {
   );
 }
 
-export default VolunteerForm;
+export default VolunteerCreate;

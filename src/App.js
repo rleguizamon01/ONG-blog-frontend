@@ -3,7 +3,7 @@ import Home from './components/Home';
 import { Posts } from './components/Posts';
 import Donation from './components/Donation';
 import Subscription from './components/Subscription';
-import Volunteers from './components/Volunteers';
+import VolunteerCreate from './components/VolunteerCreate';
 import Login from './components/Login';
 import Register from './components/Register';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -15,6 +15,7 @@ import CategoryEdit from './components/CategoryEdit';
 import UsersList from "./components/UsersList";
 import {AdminPosts} from './components/AdminPosts';
 import PostCreate from "./components/PostCreate";
+import Volunteers from './components/Volunteers';
 import Protected from "./components/Protected";
 import ProtectedAdmin from "./components/ProtectedAdmin";
 
@@ -34,7 +35,7 @@ function App() {
             <Posts/>
           </Route>
           <Route path='/volunteers/create'>
-            <Volunteers/>
+            <VolunteerCreate/>
           </Route>
           <Route path='/donations/create'>
             <Donation/>

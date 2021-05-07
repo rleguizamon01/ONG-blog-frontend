@@ -1,146 +1,55 @@
-import React from 'react';
-import * as Yup from 'yup';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
-import Header from './Header';
-
+import React, {useState, useEffect} from 'react';
+import { Container, Row } from 'react-bootstrap';
+import axios from 'axios';
+import Pagination from "react-js-pagination";
+import VolunteersTable from './VolunteersTable'
 
 export const Volunteers = () => {
 
-  const maxDate = new Date()
-  maxDate.setFullYear(maxDate.getFullYear() - 18)
+    const [volunteers, setVolunteers] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [totalVolunteers, setTotalVolunteers] = useState(1);
+    const [perPage, setPerPage] = useState(1);
 
-  const formSchema = Yup.object().shape({
-    first_name: Yup.string('Debe ingresar un nombre válido.')
-      .required('Debe ingresar un nombre.'),
-    last_name: Yup.string('Debe ingresar un apellido válido.')
-      .required('Debe ingresar un apellido.'),
-    email: Yup.string().email('El email debe tener el formato "mi_email@ejemplo.com"')
-      .required('Debe ingresar dirección de email.'),
-    phone_number: Yup.string()
-      .matches(/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, 'El numero telefonico no tiene el formato correcto.')
-      .required('Debe ingresar su numero telefonico'),
-    birth_date: Yup.date().max(maxDate, 'Debe ser mayor de 18 años para poder ser voluntario')
-      .required('Debe ingresar su fecha de nacimiento'),
-    body: Yup.string().min(50, 'Debe tener al menos 50 caracteres.')
-      .max(500, 'No debe superar los 500 caracteres.')
-      .required('El campo es obligatorio'),
-  });
+    useEffect(() => {
+        fetchVolunteers(pageNumber);
+    }, []);
 
-  return (
-    <>
-    <Header/>
-    <Formik initialValues={{
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone_number: "",
-      birth_date: "",
-      body: "",
-    }}
-            validationSchema={formSchema}
-            onSubmit={(values) => console.log(values)}
-    >
-      <div className="row flex-column p-5">
-        <div className="col">
-          <h3>Unirse al voluntariado</h3>
-        </div>
+    const fetchVolunteers = async (pageNumber = 1) => {
+      setPageNumber(pageNumber)
+        const url = `http://127.0.0.1:8000/api/volunteers?page=${pageNumber}`;
+        const response = await axios.get(url);
+        const currentVolunteers = await response.data.data;
+        const total = await response.data.total;
+        const perPage = await response.data.per_page;
+        setVolunteers(currentVolunteers);
+        setTotalVolunteers(total);
+        setPerPage(perPage);
+    }
+    const handlePageChange=(pageNumber)=> {
+        setPageNumber(pageNumber);
+        fetchVolunteers(pageNumber);
+    }
 
-        <div className="form-group">
-          <label htmlFor="first_name">Nombre</label>
-          <Field
-            className='form-control'
-            name='first_name'
-            placeholder=''
-            type='text'
-          />
-          <ErrorMessage
-            name='first_name'
-            component='div'
-            className='field-error text-danger'
-          />
-        </div>
+    return(
+        <Container>
+            <Row>
+                
+                <VolunteersTable volunteers={volunteers}/>
+            </Row>
 
-        <div className="form-group">
-          <label htmlFor="last_name">Apellido</label>
-          <Field
-            className='form-control'
-            name='last_name'
-            placeholder=''
-            type='text'
-          />
-          <ErrorMessage
-            name='last_name'
-            component='div'
-            className='field-error text-danger'
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <Field
-            className='form-control'
-            name='email'
-            placeholder=''
-            type='text'
-          />
-          <ErrorMessage
-            name='email'
-            component='div'
-            className='field-error text-danger'
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="phone_number">Número de teléfono</label>
-          <Field
-            className='form-control'
-            name='phone_number'
-            placeholder=''
-            type='text'
-          />
-          <ErrorMessage
-            name='phone_number'
-            component='div'
-            className='field-error text-danger'
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="birthdate">Fecha de nacimiento</label>
-          <Field
-            className='form-control'
-            name='birth_date'
-            placeholder=''
-            type='date'
-          />
-          <ErrorMessage
-            name='birth_date'
-            component='div'
-            className='field-error text-danger'
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="body">Contanos cómo conociste la ONG y por qué querés unirte al voluntariado</label>
-          <Field
-            className='form-control'
-            name='body'
-            as='textarea'
-            placeholder=''
-            type='text'
-          />
-          <ErrorMessage
-            name='body'
-            component='div'
-            className='field-error text-danger'
-          />
-        </div>
-
-        <button type="submit" className="btn btn-primary mt-2">Unirse</button>
-      </div>
-    </Formik>
-  </>
-  );
-}
-
-export default Volunteers;
+            <div className="d-flex justify-content-center mb-4">
+            <Pagination
+                activePage={pageNumber}
+                itemsCountPerPage={perPage}   
+                totalItemsCount={totalVolunteers}
+                pageRangeDisplayed={5}
+                onChange={(pageNumber)=>handlePageChange(pageNumber)}
+                itemClass="page-item"
+                linkClass="page-link"
+                />                
+            </div>
+        </Container>
+    );
+};
+export default Volunteers

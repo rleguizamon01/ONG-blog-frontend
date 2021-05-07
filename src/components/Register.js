@@ -121,7 +121,7 @@ const Register = () => {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary mt-2">Registrarse</button>
+                    <button type="submit" className="btn btn-primary mt-2 mb-4">Registrarse</button>
                     </Form>
                 </div>
             </Formik>

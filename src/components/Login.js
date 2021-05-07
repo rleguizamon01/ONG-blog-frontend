@@ -81,7 +81,7 @@ const Login = () => {
                             className='field-error text-danger'
                         />
                     </div>
-                 <Button type="submit" className="btn btn-success">Ingresar</Button>
+                 <Button type="submit" className="btn btn-success mb-4">Ingresar</Button>
                 </Form>
             </div>
             </Formik>
